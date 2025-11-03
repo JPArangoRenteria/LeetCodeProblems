@@ -1,0 +1,37 @@
+class Solution(object):
+    def romanToInt(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        roman = {
+        'M': 1000,
+        'CM': 900,  # 1000 - 100
+        'D': 500,
+        'CD': 400,  # 500 - 100
+        'C': 100,
+        'XC': 90,   # 100 - 10
+        'L': 50,
+        'XL': 40,   # 50 - 10
+        'X': 10,
+        'IX': 9,    # 10 - 1
+        'V': 5,
+        'IV': 4,    # 5 - 1
+        'I': 1
+        }
+        total= 0
+        i = 0
+        while i < len(s):
+            if i+1 < len(s):
+                if s[i:i+2] in roman.keys():
+                    total = total + roman[s[i:i+2]]
+                    i = i+2
+                else:
+                    if s[i] in roman.keys():
+                        total = total + roman[s[i]]
+                        i = i+1
+            else:
+                if s[i] in roman.keys():
+                    total = total + roman[s[i]]
+                    i = i+1
+        return total
